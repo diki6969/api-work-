@@ -1,11 +1,17 @@
 FROM node:16.13.0
 
-RUN apt-get update
-RUN apt-get upgrade -y
-RUN apt install ffmpeg
-RUN apt install libwebp
-RUN apt install imagemagick
+RUN apt-get update && \
+  apt-get install -y \
+  ffmpeg \
+  imagemagick \
+  webp && \
+  apt-get upgrade -y && \
+  rm -rf /var/lib/apt/lists/*
+
 RUN npm install
 
-CMD ["npm", "start"]
+COPY . .
+
 EXPOSE 5000
+
+CMD ["npm", "start"]
