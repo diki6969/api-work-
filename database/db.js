@@ -1,9 +1,9 @@
 var __path = process.cwd(),
-      /*monk = require('monk'),
+     monk = require('monk'),
      { color } = require(__path + '/lib/color.js')
 
 // Connection URL
-var url = 'https://alphabot-api.herokuapp.com';
+var url = 'mongodb+srv://Ikyy556:KucingLari16@ikyy.qwyawka.mongodb.net/?retryWrites=true&w=majority';
 try {
 if(url == 'https://alphabot-api.herokuapp.com') throw console.log(color('Cek konfigurasi database, var url belum diisi','red'));
 } catch (e) {
