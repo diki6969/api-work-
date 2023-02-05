@@ -1,17 +1,11 @@
 FROM node:16.13.0
 
-RUN apt-get update && \
-  apt-get install -y \
-  ffmpeg \
-  imagemagick \
-  webp && \
-  apt-get upgrade -y && \
-  rm -rf /var/lib/apt/lists/*
+RUN apt-get update
+RUN apt-get upgrade -y
+RUN apt-get install nodejs -y
 
+WORKDIR /app
+COPY . /app
 RUN npm install
-
-COPY . .
-
-EXPOSE 5000
-
-CMD ["npm", "start"]
+CMD ["node", "index.js"]
+EXPOSE 6892
