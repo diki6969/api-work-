@@ -1,3 +1,4 @@
+require("http").createServer((_, res) => res.end("Uptime!")).listen(8080)
 var express = require('express'),
     cors = require('cors'),
     secure = require('ssl-express-www');
