@@ -1197,9 +1197,7 @@ const completion = await openai.createChatCompletion({
              res.json({
                  author: 'IkyyOFC',
                  message: result
-             })
-         })
-         .catch(e => {
+             }).catch(e => {
          	console.log(e);
          	res.json(loghandler.error)
 })
