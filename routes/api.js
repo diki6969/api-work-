@@ -1175,7 +1175,7 @@ router.get('/other/kbbi', async (req, res, next) => {
   res.json(loghandler.apikey)
 }
 })
-router.get('/other/gpt-3.5-turbo', async (req, res, next) => {
+router.get('/other/gpturbo', async (req, res, next) => {
           var command = req.query.command
        	var text = req.query.text
            var apikey = req.query.apikey
