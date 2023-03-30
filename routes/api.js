@@ -21,6 +21,7 @@ var fs = require('fs');
 var router  = express.Router();
 var creator = global.creator
 const listkey = global.apikey
+const { Configuration, OpenAIApi } = require("openai");
 
 const scr = require ('@bochilteam/scraper')
 const { color, bgcolor } = require(__path + '/lib/color.js');
@@ -1164,6 +1165,38 @@ router.get('/other/kbbi', async (req, res, next) => {
         var result = data;
              res.json({
                  result
+             })
+         })
+         .catch(e => {
+         	console.log(e);
+         	res.json(loghandler.error)
+})
+} else {
+  res.json(loghandler.apikey)
+}
+})
+router.get('/other/gpt-3.5-turbo', async (req, res, next) => {
+          var command = req.query.command
+       	var text = req.query.text
+       	if(!apikey) return res.json(loghandler.noapikey)
+        if(listkey.includes(apikey)){
+       const configuration = new Configuration({
+  apiKey: process.env.OPENAI_API_KEY,
+});
+const openai = new OpenAIApi(configuration);
+
+const completion = await openai.createChatCompletion({
+  model: "gpt-3.5-turbo",
+  messages: [
+{role: "system", content: command},
+{role: "user", content: text}
+],
+});
+  
+            var result = completion.data.choices[0].message.content
+             res.json({
+                 author: 'IkyyOFC',
+                 message: result
              })
          })
          .catch(e => {
