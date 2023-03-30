@@ -1178,6 +1178,7 @@ router.get('/other/kbbi', async (req, res, next) => {
 router.get('/other/gpt-3.5-turbo', async (req, res, next) => {
           var command = req.query.command
        	var text = req.query.text
+           var apikey = req.query.apikey
        	if(!apikey) return res.json(loghandler.noapikey)
         if(listkey.includes(apikey)){
        const configuration = new Configuration({
