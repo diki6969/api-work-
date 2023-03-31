@@ -1176,12 +1176,12 @@ router.get('/other/kbbi', async (req, res, next) => {
 }
 })
 router.get('/other/gpturbo', async (req, res, next) => {
-          var command = req.query.command
-       	var text = req.query.text
-           var apikey = req.query.apikey
-       	if(!apikey) return res.json(loghandler.noapikey)
-        if(listkey.includes(apikey)){
-       const configuration = new Configuration({
+	var command = req.query.command
+	var text = req.query.text
+	var apikey = req.query.apikey
+	if(!apikey) return res.json(loghandler.noapikey)
+	if(listkey.includes(apikey)){
+		const configuration = new Configuration({
   apiKey: process.env.OPENAI_API_KEY,
 });
 const openai = new OpenAIApi(configuration);
@@ -1193,18 +1193,14 @@ const completion = await openai.createChatCompletion({
 {role: "user", content: text}
 ],
 });
-  
-            var result = completion.data.choices[0].message.content
-             res.json({
-                 author: 'IkyyOFC',
-                 message: result
-             }).catch(e => {
-         	console.log(e);
-         	res.json(loghandler.error)
-})
-} else {
-  res.json(loghandler.apikey)
-}
+		res.json({
+			author: 'IkyyOFC',
+status: true,
+result: completion.data.choices[0].message.content
+		})
+		} else {
+			res.json(loghandler.apikey)
+			}
 })
 
 module.exports = router
