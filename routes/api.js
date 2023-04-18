@@ -1196,13 +1196,14 @@ const completion = await openai.createChatCompletion({
     {role: "system", content: text1},
     {role: "user", content: text2}
     ],
-});
-        var data = data;
+})
+
+        var data = completion.data.choices[0].message.content
+
              res.json({
              	status: 200,
-             	data,
+             	result: data,
              })
-         })
          .catch(e => {
          	console.log(e);
          	res.json(loghandler.error)
