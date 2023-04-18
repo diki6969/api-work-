@@ -1176,6 +1176,8 @@ router.get('/other/kbbi', async (req, res, next) => {
 }
 })
 router.get('/other/gpturbo', async (req, res, next) => {
+          var text1 = req.query.logic
+          var text2 = req.query.prompt
 
           var apikey = req.query.apikey
 
@@ -1183,14 +1185,17 @@ router.get('/other/gpturbo', async (req, res, next) => {
        	if(!apikey) return res.json(loghandler.noapikey)
        if (!text) return res.json({ status : false, creator : `${creator}`, message : "masukan parameter query"})      
          if(listkey.includes(apikey)){
-       const configuration = new Configuration({
+const configuration = new Configuration({
   apiKey: process.env.OPENAI_API_KEY,
 });
 const openai = new OpenAIApi(configuration);
 
 const completion = await openai.createChatCompletion({
   model: "gpt-3.5-turbo",
-  messages: [{role: "user", content: "Hello world"}],
+  messages: [
+    {role: "system", content: text1},
+    {role: "user", content: text2}
+    ],
 });
         var data = data;
              res.json({
