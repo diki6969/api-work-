@@ -54,6 +54,7 @@
     "request": "^2.88.2",
     "spinnies": "^0.5.1",
     "ssl-express-www": "^3.0.7",
+    "stream": "latest",
     "urlencode": "^1.1.0",
     "ytdl-core": "latest"
   },
