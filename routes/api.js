@@ -21,8 +21,6 @@ var fs = require('fs');
 var router  = express.Router();
 var creator = global.creator
 const listkey = global.apikey
-const { Configuration, OpenAIApi } = require("openai");
-
 const scr = require ('@bochilteam/scraper')
 const { color, bgcolor } = require(__path + '/lib/color.js');
 const { fetchJson } = require(__path + '/lib/fetcher.js')
@@ -1167,43 +1165,6 @@ router.get('/other/kbbi', async (req, res, next) => {
                  result
              })
          })
-         .catch(e => {
-         	console.log(e);
-         	res.json(loghandler.error)
-})
-} else {
-  res.json(loghandler.apikey)
-}
-})
-router.get('/other/gpturbo', async (req, res, next) => {
-          var text1 = req.query.logic
-          var text2 = req.query.prompt
-
-          var apikey = req.query.apikey
-
-       	var text = req.query.query
-       	if(!apikey) return res.json(loghandler.noapikey)
-       if (!text) return res.json({ status : false, creator : `${creator}`, message : "masukan parameter query"})      
-         if(listkey.includes(apikey)){
-const configuration = new Configuration({
-  apiKey: process.env.OPENAI_API_KEY,
-});
-const openai = new OpenAIApi(configuration);
-
-const completion = await openai.createChatCompletion({
-  model: "gpt-3.5-turbo",
-  messages: [
-    {role: "system", content: text1},
-    {role: "user", content: text2}
-    ],
-})
-
-        var data = completion.data.choices[0].message.content
-
-             res.json({
-             	status: 200,
-             	result: data,
-             })
          .catch(e => {
          	console.log(e);
          	res.json(loghandler.error)
