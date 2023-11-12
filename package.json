@@ -56,6 +56,7 @@
     "ssl-express-www": "^3.0.7",
     "stream": "latest",
     "urlencode": "^1.1.0",
+    "util": "latest",
     "ytdl-core": "latest"
   },
   "homepage": "https://github.com/zeeone-ofc/api-mirip-zeks#readme"
