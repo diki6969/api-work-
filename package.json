@@ -53,7 +53,8 @@
     "request": "^2.88.2",
     "spinnies": "^0.5.1",
     "ssl-express-www": "^3.0.7",
-    "urlencode": "^1.1.0"
+    "urlencode": "^1.1.0",
+    "ytdl-core": "latest"
   },
   "homepage": "https://github.com/zeeone-ofc/api-mirip-zeks#readme"
 }
