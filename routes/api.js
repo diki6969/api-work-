@@ -527,28 +527,7 @@ router.get("/download/youtube", async (req, res, next) => {
             message: "Masukan parameter type <audio/video>"
         });
     if (listkey.includes(apikey)) {
-        const {
-            id,
-            thumbnail,
-            video: _video,
-            title
-        } = await scr.youtubedlv2(url);
-        try {
-            for (let i in _video) {
-                video = _video[i];
-                let kin = await video.download();
-                res.json({
-                    id: id,
-                    thumbnail: thumbnail,
-                    title: title,
-                    size: video.fileSize,
-                    download: kin
-                });
-            }
-        } catch {
-            console.log(e);
-            res.json(loghandler.error);
-        }
+        const json = await ytdl(url)
     } else {
         res.json(loghandler.apikey);
     }
